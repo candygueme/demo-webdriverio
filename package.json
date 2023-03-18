@@ -1,0 +1,20 @@
+{
+  "name": "my-new-project",
+  "type": "module",
+  "devDependencies": {
+    "@babel/core": "^7.21.3",
+    "@babel/preset-env": "^7.20.2",
+    "@babel/register": "^7.21.0",
+    "@wdio/browser-runner": "^8.6.2",
+    "@wdio/cli": "^8.6.2",
+    "@wdio/dot-reporter": "^8.4.0",
+    "@wdio/mocha-framework": "^8.6.1",
+    "@wdio/spec-reporter": "^8.4.0",
+    "chai": "^4.3.7",
+    "chromedriver": "^111.0.0",
+    "wdio-chromedriver-service": "^8.1.1"
+  },
+  "scripts": {
+    "wdio": "wdio run ./wdio.conf.js"
+  }
+}
