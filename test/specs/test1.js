@@ -1,4 +1,4 @@
-import { expect as expectChai } from 'chai'
+
 describe('my awesome website', () => {
     before('optional description', async () => {
         console.log("runs once before the first test in this block")

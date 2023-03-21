@@ -1,4 +1,4 @@
-import * as chai from 'chai';
+
 export const config = {
     //
     // ====================
@@ -194,11 +194,16 @@ export const config = {
      * @param {Array.<String>} specs        List of spec file paths that are to be run
      * @param {Object}         browser      instance of created browser/device session
      */
-    before: function () {
+    before: async () => {
 
-        global.expectChai = chai.expect();
-        global.assert = chai.expect();
-        global.should = chai.expect();
+        const chai = await import('chai');
+        global.expectChai = chai.expect;
+        global.assert = chai.expect;
+        global.should = chai.expect;
+        //    const chai = require('chai');
+        //global.expectChai = chai.expect();
+        //global.assert = chai.expect();
+        //global.should = chai.expect();
     },
     /**
      * Runs before a WebdriverIO command gets executed.
