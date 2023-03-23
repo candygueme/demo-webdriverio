@@ -8,7 +8,7 @@ It basically sends requests to a Selenium server via the WebDriver Protocol and 
 Run:
 Please install 16.x Node.js
 
-npm i
-npm run wdio 
+*npm i
+*npm run wdio 
 
 
