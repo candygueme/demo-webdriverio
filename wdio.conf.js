@@ -60,6 +60,24 @@ export const config = {
         maxInstances: 5,
         //
         browserName: 'chrome',
+        browserVersion: 'latest',
+        'goog:chromeOptions': {
+          w3c: true,
+          // to run chrome headless the following flags are required
+          // (see https://developers.google.com/web/updates/2017/04/headless-chrome)
+          // --disable-gpu \   # Temporarily needed if running on Windows."window-size=2560,1440" "window-size=1360,998"
+          args: ['--headless','--no-sandbox', '--disable-dev-shm-usage', "window-size=2560,1440"],
+          prefs: {
+            'download.default_directory': '',
+            'profile.content_settings.exceptions.clipboard': {
+              "[*.],*": {
+                "last_modified": "1576491240619",
+                "setting": 1
+              }
+            },
+  
+          }
+        },
         acceptInsecureCerts: true
         // If outputDir is provided WebdriverIO can capture driver session logs
         // it is possible to configure which logTypes to include/exclude.

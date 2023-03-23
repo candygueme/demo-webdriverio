@@ -19,11 +19,25 @@ describe('my awesome website', () => {
     });
 
     it('should do some assertions', async () => {
-        await expect(browser).toHaveTitle('WebdriverIO · Next-gen browser and mobile automation test framework for Node.js | WebdriverIO')
+        await expect(browser).toHaveUrl('https://webdriver.io');
+        await expect(browser).toHaveUrlContaining('webdriver');
+        await expect(browser).toHaveTitle('WebdriverIO · Next-gen browser and mobile automation test framework for Node.js | WebdriverIO');
+        await expect(browser).toHaveTitleContaining('WebdriverIO');
     })
 
+    it('Expect', async () => {
+
+        const elem = $("//a[text()='Why WebdriverIO?']")
+        await elem.waitForClickable();
+        await expect(elem).toBeDisplayed();
+        await expect(elem).toExist();
+        await expect(elem).toBePresent();
+        await expect(elem).toBeClickable();
+        await expect(elem).toBeDisabled();
+    })
+
+
     it('expect the same title with chai', async () => {
-        
         expectChai(await browser.getTitle()).to.equal('WebdriverIO · Next-gen browser and mobile automation test framework for Node.js | WebdriverIO');
     })
 
@@ -31,7 +45,7 @@ describe('my awesome website', () => {
         // ...
     });
 
-    it('test case 3', async () => {
+    it.only('test case 3', async () => {
         // ...
     });
 
