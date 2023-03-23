@@ -9,6 +9,7 @@ Run:
 Please install 16.x Node.js
 
 *npm i
+
 *npm run wdio 
 
 
