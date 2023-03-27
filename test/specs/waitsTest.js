@@ -20,7 +20,7 @@ describe('waits', () => {
         console.log(await message.isDisplayed());
     });
 
-    it.only('wait until for a condition', async () => {
+    it('wait until for a condition', async () => {
         await browser.url('https://rahulshettyacademy.com/loginpagePractise/');
 
         await expect(browser).toHaveTitleContaining('LoginPage Practise');

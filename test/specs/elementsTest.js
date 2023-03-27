@@ -141,7 +141,7 @@ describe("test suite description - Rahul Shetty Academy login", ()=>{
         
         console.log('elemento es focused? ' + isFocused);
         await expect(userName).toBeFocused();
-        await expect(password).toBeFocused();
+        await expect(password).not.toBeFocused();
     });
 
 });
