@@ -3,7 +3,6 @@ import LoginPage from "../pageobjects/LoginPage.js"
 
 describe(' description suite', ()=>{
 
-
     getLoginData.forEach(({username, password}) => {
         it('incorrect credentials', async()=>{
             LoginPage.openLogin();
@@ -15,4 +14,4 @@ describe(' description suite', ()=>{
         });
     });   
 
-})
+});
