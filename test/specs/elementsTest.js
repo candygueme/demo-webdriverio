@@ -64,7 +64,7 @@ describe("test suite description - Rahul Shetty Academy login", ()=>{
     
     it('selector by className and partial Text', async() => {
         await browser.url('https://rahulshettyacademy.com/loginpagePractise/');
-        const radioBtnAdmin = $('.radiotextsty*=Ad');
+        const radioBtnAdmin = $('.radiotextsty=Admin');
         console.log(await radioBtnAdmin.getText());
     });
 
@@ -84,9 +84,11 @@ describe("test suite description - Rahul Shetty Academy login", ()=>{
         const message = $('#login-form > div.alert.alert-danger'); //other examples #login-form .alert
         const userName = $('#username');     
         const password = $('#password');
+        const loginBtn = $('#signInBtn');
         await userName.setValue('usernameExample');
         await password.setValue('124');
-        
+        await loginBtn.click();
+        await expect(message).toHaveTextContaining('Incorrect');
         const isExisting = await message.isExisting();
         const isDisplayed = await message.isDisplayed();
         console.log('is existing? ' + isExisting + ' is displayed?: ' + isDisplayed);
@@ -112,22 +114,19 @@ describe("test suite description - Rahul Shetty Academy login", ()=>{
         console.log('is existing? ' + isExisting + ' is displayed?: ' + isDisplayed);
     });
     
-    it.only('radio Button is selected', async()=>{
+    it('radio Button is selected', async()=>{
         await browser.url('https://rahulshettyacademy.com/loginpagePractise/');
 
         await expect(browser).toHaveTitleContaining('LoginPage Practise');
-        const password = $('#password');
-        await expect(password).toBeClickable();
-        const radioButtonOptions = $$('#usertype');
-      
-        await radioButtonOptions.forEach(async(btn)=>
-            console.log(' es seleccionado ' + await btn.getValue() + ': ' + await btn.isSelected()))
-        
-        const isSelected = await radioButtonOptions[0].isSelected();
-        console.log('admin es selected? ' + isSelected);
 
-        const isUser = await radioButtonOptions[1].isSelected();
-        console.log('student es selected? ' + isUser);
+        const radioButtonOptions = $$('label.customradio span.radiotextsty');
+
+        
+        await radioButtonOptions.forEach(async(btn) => 
+        console.log('es selected? '+ await btn.nextElement().getValue() + ' ' + await btn.nextElement().isSelected()));
+
+        await radioButtonOptions.forEach( async(btn) => await expect(btn).toBeClickable());
+
     });
 
     it('description is focused', async()=>{
@@ -135,18 +134,15 @@ describe("test suite description - Rahul Shetty Academy login", ()=>{
         await expect(browser).toHaveTitleContaining('LoginPage Practise');
    
         const userName = $('#username');
-        const pass = $('#password');
-
+        const password = $('#password');
         await userName.click();
         const isFocused = await userName.isFocused();
-        expect(userName).toBeFocused();
+       
+        
         console.log('elemento es focused? ' + isFocused);
-
-        const passFocused = await pass.isFocused();
-        console.log('elemento es focused? ' + passFocused);
-        expect(userName).not.toBeFocused();
+        await expect(userName).toBeFocused();
+        await expect(password).toBeFocused();
     });
-
 
 });
 

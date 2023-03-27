@@ -17,7 +17,7 @@ describe('Element interactions', () => {
         
     });
 
-    it.only('select from Dropdown list', async()=>{
+    it('select from Dropdown list', async()=>{
         await browser.url('https://rahulshettyacademy.com/loginpagePractise/');
     
         await expect(browser).toHaveTitleContaining('LoginPage Practise');
