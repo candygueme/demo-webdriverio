@@ -28,7 +28,7 @@ export const config = {
   ],
   suites: {
     end2end: [
-      './test/specs/test1.js',
+      './test/specs/testPageObjet.js',
     ],
     other: [
       // ...
@@ -74,7 +74,7 @@ export const config = {
       // to run chrome headless the following flags are required
       // (see https://developers.google.com/web/updates/2017/04/headless-chrome)
       // --disable-gpu \   # Temporarily needed if running on Windows."window-size=2560,1440" "window-size=1360,998"
-      args: ['--headless', '--no-sandbox', '--disable-dev-shm-usage', "window-size=2560,1440"],
+      args: ['--window-position=-1920,-100','--start-maximized'],
       prefs: {
         'download.default_directory': '',
         'profile.content_settings.exceptions.clipboard': {
@@ -123,7 +123,7 @@ export const config = {
   // with `/`, the base url gets prepended, not including the path portion of your baseUrl.
   // If your `url` parameter starts without a scheme or `/` (like `some/path`), the base url
   // gets prepended directly.
-  baseUrl: '',
+  baseUrl: 'https://rahulshettyacademy.com',
   //
   // Default timeout for all waitFor* commands.
   waitforTimeout: 10000,

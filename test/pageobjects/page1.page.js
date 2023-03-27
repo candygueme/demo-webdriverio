@@ -1,4 +1,4 @@
-const PageBase = require("./pageBase")
+import PageBase from "./pageBase";
 
 class Page1 extends PageBase{
 
@@ -7,6 +7,10 @@ class Page1 extends PageBase{
     }
     get nameSelector2() {
         return $("//input[@type='password']")
+    }
+
+    async openLogin(){
+        await this.open('loginpagePractise');
     }
 
     async Login(userName, password) {
