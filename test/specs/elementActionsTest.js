@@ -9,9 +9,10 @@ describe('Element interactions', () => {
         const secondUserName = $('[name="username"]'); 
      
         await userName.setValue('usernameExample');
+        await browser.pause(2000);
         await secondUserName.addValue('moreExample');
-     
-        //await expect(userName).toHaveValueContaining('usernameExamplemoreExample');
+        await browser.pause(2000);
+        await expect(userName).toHaveValueContaining('usernameExamplemoreExample');
         console.log(await userName.getValue());
         
     });

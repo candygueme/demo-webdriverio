@@ -1,14 +1,21 @@
+describe('cc', ()=>{
+    it('test description', async()=>{
+        await browser.url('https://rahulshettyacademy.com/loginpagePractise/')
+        console.log(await browser.getUrl());
+    })
+})
+
 describe("test suite description - Rahul Shetty Academy login", ()=>{
 
     it('selector by Id and cssSelector', async()=>{
         await browser.url('https://rahulshettyacademy.com/loginpagePractise/');
-        //resolved, pending, rejected
-        console.log(await browser.getTitle());
+
         const userName = $('#username');     
         const password = $('#password'); 
         const loginBtn = $('#signInBtn');
         const message = $('#login-form > div.alert.alert-danger'); // css selector 
         const selector = $('select.form-control');
+  
   
         await userName.setValue('usernameExample');
         await password.setValue('124');
@@ -23,9 +30,29 @@ describe("test suite description - Rahul Shetty Academy login", ()=>{
         console.log(await browser.getTitle());
         const userName = $('#username');     
         const password = $('#password'); 
+        const loginBtn = $('#signInBtn');
+        const message = $('#login-form > div.alert.alert-danger');
+   
+        await userName.setValue('usernameExample');
+        await password.setValue('124');
+        await loginBtn.click();
+
+        await expect(message).toHaveTextContaining('Incorrect');
+        const isExisting = await message.isExisting();
+        const isDisplayed = await message.isDisplayed();
+        console.log('is existing? ' + isExisting + ' is displayed?: ' + isDisplayed);
+    });
+
+    it('selector by Id and cssSelector', async()=>{
+        await browser.url('https://rahulshettyacademy.com/loginpagePractise/');
+        //resolved, pending, rejected
+        console.log(await browser.getTitle());
+        const userName = $('#username');     
+        const password = $('#password'); 
         const selector = $('select.form-control');
      
-        const selectOption = await selector.$$('option')[2].getText(); //chanaible locators
+        const selectOption = await selector.$$('option')[2].getText();
+      
         await userName.setValue('usernameExample');
         await password.setValue('124');
     
@@ -36,11 +63,13 @@ describe("test suite description - Rahul Shetty Academy login", ()=>{
 
     
     it('selector by className and partial Text', async() => {
-        const radioBtnAdmin = $('.radiotextsty*=Ad');
+        await browser.url('https://rahulshettyacademy.com/loginpagePractise/');
+        const radioBtnAdmin = $('.radiotextsty=Admin');
         console.log(await radioBtnAdmin.getText());
     });
 
     it('selector by link', async() => {
+        await browser.url('https://rahulshettyacademy.com/loginpagePractise/');
         const link = $('=terms and conditions');// partial link -> const link = $('*=terms')
         console.log(await link.getText());
         const attValue = await link.getAttribute('href');
@@ -53,8 +82,13 @@ describe("test suite description - Rahul Shetty Academy login", ()=>{
         await browser.url('https://rahulshettyacademy.com/loginpagePractise/');
 
         const message = $('#login-form > div.alert.alert-danger'); //other examples #login-form .alert
-
-        
+        const userName = $('#username');     
+        const password = $('#password');
+        const loginBtn = $('#signInBtn');
+        await userName.setValue('usernameExample');
+        await password.setValue('124');
+        await loginBtn.click();
+        await expect(message).toHaveTextContaining('Incorrect');
         const isExisting = await message.isExisting();
         const isDisplayed = await message.isDisplayed();
         console.log('is existing? ' + isExisting + ' is displayed?: ' + isDisplayed);
@@ -82,16 +116,17 @@ describe("test suite description - Rahul Shetty Academy login", ()=>{
     
     it('radio Button is selected', async()=>{
         await browser.url('https://rahulshettyacademy.com/loginpagePractise/');
+
         await expect(browser).toHaveTitleContaining('LoginPage Practise');
-   
-        const radioButtonOptions = $$('#usertype');
+
+        const radioButtonOptions = $$('label.customradio span.radiotextsty');
 
         
-        const isSelected = await radioButtonOptions[0].isSelected();
-        console.log('admin es selected? ' + isSelected);
+        await radioButtonOptions.forEach(async(btn) => 
+        console.log('es selected? '+ await btn.nextElement().getValue() + ' ' + await btn.nextElement().isSelected()));
 
-        const isUser = await radioButtonOptions[1].isSelected();
-        console.log('student es selected? ' + isUser);
+        await radioButtonOptions.forEach( async(btn) => await expect(btn).toBeClickable());
+
     });
 
     it('description is focused', async()=>{
@@ -99,12 +134,15 @@ describe("test suite description - Rahul Shetty Academy login", ()=>{
         await expect(browser).toHaveTitleContaining('LoginPage Practise');
    
         const userName = $('#username');
-
+        const password = $('#password');
         await userName.click();
         const isFocused = await userName.isFocused();
+       
+        
         console.log('elemento es focused? ' + isFocused);
+        await expect(userName).toBeFocused();
+        await expect(password).not.toBeFocused();
     });
-
 
 });
 
