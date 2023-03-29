@@ -5,6 +5,7 @@
     "@babel/core": "^7.21.3",
     "@babel/preset-env": "^7.20.2",
     "@babel/register": "^7.21.0",
+    "@wdio/allure-reporter": "^8.6.8",
     "@wdio/browser-runner": "^8.6.2",
     "@wdio/cli": "^8.6.2",
     "@wdio/dot-reporter": "^8.4.0",
@@ -15,8 +16,13 @@
     "wdio-chromedriver-service": "^8.1.1"
   },
   "scripts": {
-    "test": "wdio run ./wdio.conf.js",
-    "spec": "wdio run ./wdio.conf.js --spec ./test/specs/LoginTest.js",
-    "runSuite": "wdio wdio.conf.js --suite end2end"
+    "AllTest": "wdio run ./wdio.conf.js",
+    "oneTest": "wdio run ./wdio.conf.js --spec ./test/specs/LoginTest.js",
+    "baseTest": "wdio run ./wdio.conf.js --spec ./test/specs/baseTest.js",
+    "runSuite": "wdio wdio.conf.js --suite end2end",
+    "allureReport": "allure generate allure-results/ --clean && allure open"
+  },
+  "dependencies": {
+    "allure-commandline": "^2.21.0"
   }
 }

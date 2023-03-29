@@ -5,18 +5,12 @@ describe('my awesome website', () => {
         await browser.url('https://webdriver.io')
     });
 
-    after('optional description', async () => {
-        console.log("runs once after the last test in this block")
-    });
 
     beforeEach('optional description', async () => {
         console.log("runs before each test in this block")
        
     });
 
-    afterEach('optional description', async () => {
-        console.log("uns after each test in this block")
-    });
 
     it('should do some assertions', async () => {
         await expect(browser).toHaveUrl('https://webdriver.io/');
@@ -25,10 +19,11 @@ describe('my awesome website', () => {
         await expect(browser).toHaveTitleContaining('WebdriverIO');
     })
 
-    it('Expect', async () => {
+    it.only('Expect', async () => {
 
         const elem = $("//a[text()='Why WebdriverIO?']")
         await elem.waitForClickable();
+        console.log(await elem.isDisplayed())
         await expect(elem).toBeDisplayed();
         await expect(elem).toExist();
         await expect(elem).toBePresent();
@@ -48,17 +43,11 @@ describe('my awesome website', () => {
         expectChai(array).to.be.an('array').that.is.empty;
     })
 
-    it('test case 3', async () => {
-        // ...
+    after('optional description', async () => {
+        console.log("runs once after the last test in this block")
     });
 
-   // it.only('test case 3', async () => {
-        // ...
-   // });
-
-    it.skip('test case 4', async () => {
-        // ...
-    }); 
-    
-    it('pending');
+    afterEach('optional description', async () => {
+        console.log("uns after each test in this block")
+    });
 })
